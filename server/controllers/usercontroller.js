@@ -16,17 +16,17 @@ exports.register = async function register(req, res, next) {
     } catch (e) {
         let err = e.toString()
         if (e.toString().includes('duplicate')) {
-            console.log(e)
+            console.error(e.message)
             if (err.includes('name_1'))
-                res.status(400).json({
+                res.status(409).json({
                     message: "Username already taken"
                 })
             else
-                res.status(400).json({
+                res.status(409).json({
                     message: "Email already taken"
                 })
         } else
-            res.status(400).json({
+            res.status(409).json({
                 message: e.message
             })
     }
