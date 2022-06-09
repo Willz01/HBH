@@ -6,7 +6,7 @@
 >
 >Lele &rarr; **Receptionist**.
 >
->Sayotsuki &rarr; **Counselor**.
+>Sayotsuki &rarr; **Counsellor**.
 
 
 > ***more!***...
