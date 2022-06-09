@@ -1,5 +1,6 @@
 require('dotenv').config()
 
+const path = require('path');
 const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
@@ -21,7 +22,7 @@ db.once("open", () => {
     console.log("Connected to DB");
 });
 
-const allowedOrigins = [ "*"];
+const allowedOrigins = ["*"];
 const methods = [
     "GET",
     "PUT",
@@ -40,8 +41,14 @@ app.use(
         headers: headers,
     })
 );
+const PUBLIC = '../client/views/'
 
+// static pages
 
+// -/home
+app.get('/hbh/home', (req, res, next) => {
+    res.sendFile(path.join(__dirname, PUBLIC, 'home.html'))
+})
 
 // users router
 const u_router = require('./routes/userrouter')
@@ -49,6 +56,7 @@ app.use('/hbh/api/users', u_router)
 
 // stories router
 const s_router = require('./routes/storyrouter')
+
 app.use('/hbh/api/stories', s_router)
 
 app.get('/hbh/api/test', (req, res) => {
@@ -56,6 +64,6 @@ app.get('/hbh/api/test', (req, res) => {
     res.send('Test')
 })
 
-app.listen(PORT, ()=>{
+app.listen(PORT, () => {
     console.log(`Listening at http://localhost:4500/hbh/api`)
 })

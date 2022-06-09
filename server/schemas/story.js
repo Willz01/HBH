@@ -12,7 +12,7 @@ const storySchema = new mongoose.Schema({
     },
     comments:{
         type: Array,
-        default: [],  // {commenter, comment}
+        default: [],  // {commenter(user), comment}
         required: false
     }
 })
