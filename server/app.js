@@ -11,6 +11,8 @@ const app = express()
 app.use(bodyParser.json({limit: '10mb'}));
 app.use(bodyParser.urlencoded({limit: '10mb', extended: true}));
 const PORT = 4500
+const PUBLIC = '../client/views/'
+
 
 mongoose.connect(process.env.DATABASE_URL);
 const db = mongoose.connection;
@@ -41,13 +43,18 @@ app.use(
         headers: headers,
     })
 );
-const PUBLIC = '../client/views/'
+
 
 // static pages
 
-// -/home
+// -/hbh/home
 app.get('/hbh/home', (req, res, next) => {
     res.sendFile(path.join(__dirname, PUBLIC, 'home.html'))
+})
+
+// -/hbh/stories
+app.get('/hbh/stories', (req, res, next) => {
+    res.sendFile(path.join(__dirname, PUBLIC, 'stories.html'))
 })
 
 // users router
